@@ -7,15 +7,15 @@ public class DinnerModel implements IDinnerModel {
 	
 	Set<Dish> dishes = new HashSet<Dish>();
 	Set<Dish> menu = new HashSet<Dish>();
-	private int fieldNumberOfGuests;
+	private int numberOfGuests;
 	
 	//Interface
 	public int getNumberOfGuests() {
-		return fieldNumberOfGuests;
+		return numberOfGuests;
 	}
 	
 	public void setNumberOfGuests(int numberOfGuests) {
-		fieldNumberOfGuests = numberOfGuests;
+		this.numberOfGuests = numberOfGuests;
 	}
 	
 	public Dish getSelectedDish(int type) {
@@ -53,7 +53,7 @@ public class DinnerModel implements IDinnerModel {
 		for(Dish d : menu){
 			temp = d.getIngredients();
 			for (Ingredient e : temp) {
-				result += (e.getPrice()*fieldNumberOfGuests);
+				result += (e.getPrice()*numberOfGuests);
 			}
 		}
 		return result;
