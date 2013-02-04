@@ -60,6 +60,14 @@ public class Dish {
 		ingredients.remove(ing);
 	}
 	
+	public double getDishPrice(int numberOfGuests){
+		double price = 0;
+		for (Ingredient i : ingredients) {
+			price = price +  i.getPrice() * numberOfGuests;
+		}
+		return price;
+	}
+	
 	public boolean contains(String filter){
 		if(name.toLowerCase().contains(filter.toLowerCase())){
 			return true;

@@ -1,13 +1,17 @@
 package se.kth.csc.iprog.dinnerplanner.view;
 
 import javax.swing.*;
+
+import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
+import se.kth.csc.iprog.dinnerplanner.model.Dish;
+
 import java.awt.*;
 import java.util.List;
 
 
-public class StartView extends JPanel {
+public class StarterChosenView extends JPanel {
 	
-	public StartView(){	
+	public StarterChosenView(DinnerModel model){	
 		//Left side border
 		JPanel leftBorder = new JPanel();
 		leftBorder.setLayout(new BorderLayout());
@@ -25,15 +29,19 @@ public class StartView extends JPanel {
 		JPanel DishList = new JPanel();
 		DishList.setLayout(new FlowLayout());
 		
-		JPanel dish = new JPanel();
-		ImageIcon icon = new ImageIcon("images/icecream.jpg");
-		JLabel dishName = new JLabel("Dish name", null, JLabel.CENTER);
-		JLabel dishIcon = new JLabel("", icon, JLabel.CENTER);		
+		for(Dish d : model.getDishes()){
+			JPanel dish = new JPanel();
+			ImageIcon icon = new ImageIcon("images/" + d.getImage());
+			JLabel dishName = new JLabel(d.getName(), null, JLabel.CENTER);
+			JLabel dishIcon = new JLabel("", icon, JLabel.CENTER);		
+			
+			dish.setLayout(new BorderLayout());
+			dish.add(dishIcon, BorderLayout.NORTH);
+			dish.add(dishName, BorderLayout.SOUTH);
+			DishList.add(dish);
+		}
 		
-		dish.setLayout(new BorderLayout());
-		dish.add(dishIcon, BorderLayout.NORTH);
-		dish.add(dishName, BorderLayout.SOUTH);
-		DishList.add(dish);
+
 		
 		DishListContainer.setViewportView(DishList);
 		leftBorder.add(DishListContainer,BorderLayout.CENTER);
@@ -64,8 +72,8 @@ public class StartView extends JPanel {
 		// Right Side Spinner
 		JPanel spinnerContainer = new JPanel();
 		JLabel labelNrOfGuests = new JLabel("number of guests");
-		SpinnerModel model = new SpinnerNumberModel(1, 0, 100, 1);
-		JSpinner spinner = new JSpinner(model);
+		SpinnerModel spinnerModel = new SpinnerNumberModel(1, 0, 100, 1);
+		JSpinner spinner = new JSpinner(spinnerModel);
 		
 		spinnerContainer.add(labelNrOfGuests);
 		spinnerContainer.add(spinner);
@@ -75,7 +83,7 @@ public class StartView extends JPanel {
 		// Right Side Cost
 		JPanel costContainer = new JPanel();
 		JLabel labelCostLabel = new JLabel("Total cost: ");
-		JLabel labelCost = new JLabel("$0.00");
+		JLabel labelCost = new JLabel(Float.toString(model.getTotalMenuPrice()));
 		
 		costContainer.add(labelCostLabel);
 		costContainer.add(labelCost);
@@ -88,12 +96,46 @@ public class StartView extends JPanel {
 		rightNorthContainer.add(dinnerMenuHeader, BorderLayout.NORTH);
 		
 		// Right side Dinner Menu
-		JLabel labelDinnerMenu = new JLabel("Drag your dish to the menu");
-		labelDinnerMenu.setAlignmentX(CENTER_ALIGNMENT);
+		// Chosen Dish Container
+		JPanel chosenDishesContainer = new JPanel();
+		chosenDishesContainer.setLayout(new BoxLayout(chosenDishesContainer, BoxLayout.Y_AXIS));
+		
+		for (Dish d : model.getFullMenu()){
+			
+			// Chosen Dish
+			JPanel chosenDishContainer = new JPanel();
+			chosenDishContainer.setLayout(new BoxLayout(chosenDishContainer, BoxLayout.X_AXIS));
+			
+			//	... labels
+			JPanel dishLabelContainer = new JPanel();
+			dishLabelContainer.setLayout(new BoxLayout(dishLabelContainer, BoxLayout.Y_AXIS));
+			JLabel labelTypeOfDish = new JLabel(d.getName());
+			JLabel labelCostOfDish = new JLabel(Double.toString(d.getDishPrice(model.getNumberOfGuests())));
+			dishLabelContainer.add(labelTypeOfDish);
+			dishLabelContainer.add(labelCostOfDish);
+			
+			//	... small image
+			ImageIcon tempIcon = new ImageIcon("images/" + d.getImage());
+			Image tempImage = tempIcon.getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
+			ImageIcon smallIcon = new ImageIcon(tempImage);
+			JLabel smallDishIcon = new JLabel("", smallIcon, JLabel.CENTER);
+			
+			//	... remove button
+			JButton btnRemove = new JButton("X");
+			
+			chosenDishContainer.add(smallDishIcon);
+			chosenDishContainer.add(Box.createHorizontalGlue());
+			chosenDishContainer.add(dishLabelContainer);
+			chosenDishContainer.add(Box.createHorizontalGlue());
+			chosenDishContainer.add(btnRemove);
+			chosenDishesContainer.add(chosenDishContainer);
+		
+		}
+		
 		
 		// Append to right side
 		rightSide.add(rightNorthContainer, BorderLayout.NORTH);
-		rightSide.add(labelDinnerMenu, BorderLayout.CENTER);
+		rightSide.add(chosenDishesContainer, BorderLayout.CENTER);
 		rightSide.add(btnContainer, BorderLayout.SOUTH);
 		
 		//The panels properties

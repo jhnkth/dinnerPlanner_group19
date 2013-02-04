@@ -26,11 +26,14 @@ public class DinnerPlanner extends JFrame {
 		
 		//Creating the first view
 		StartView startView = new StartView();
+		StarterChosenView starterChosenView = new StarterChosenView(dinnerPlanner.getModel());
 		
 		//Adding the view to the main JFrame
-		dinnerPlanner.getContentPane().add(startView);
+		dinnerPlanner.getContentPane().add(starterChosenView);
 		
 		//and starting the JFrame
 		dinnerPlanner.setVisible(true);
 	}	
 }
+
+

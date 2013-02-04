@@ -7,7 +7,7 @@ public class DinnerModel implements IDinnerModel {
 	
 	Set<Dish> dishes = new HashSet<Dish>();
 	Set<Dish> menu = new HashSet<Dish>();
-	private int numberOfGuests;
+	private int numberOfGuests = 5;
 	
 	//Interface
 	public int getNumberOfGuests() {
@@ -111,7 +111,9 @@ public class DinnerModel implements IDinnerModel {
 		dish2.addIngredient(dish2ing11);
 		dishes.add(dish2);
 		
-		
+		// Adding some dishes to the menu
+		menu.add(dish1);
+		menu.add(dish2);
 	}
 	
 	/**

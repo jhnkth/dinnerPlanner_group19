@@ -1,8 +1,8 @@
 package se.kth.csc.iprog.dinnerplanner.view;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
+import javax.swing.*;
+import java.awt.*;
+import java.util.List;
 
 public class MainView extends JPanel {
 	
