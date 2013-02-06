@@ -2,8 +2,10 @@ package se.kth.csc.iprog.dinnerplanner.model;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Observable;
 
-public class DinnerModel implements IDinnerModel {
+
+public class DinnerModel extends Observable implements IDinnerModel  {
 	
 	Set<Dish> dishes = new HashSet<Dish>();
 	Set<Dish> menu = new HashSet<Dish>();
@@ -16,6 +18,9 @@ public class DinnerModel implements IDinnerModel {
 	
 	public void setNumberOfGuests(int numberOfGuests) {
 		this.numberOfGuests = numberOfGuests;
+		this.setChanged();
+		this.notifyObservers();
+		
 	}
 	
 	public Dish getSelectedDish(int type) {
@@ -150,6 +155,16 @@ public class DinnerModel implements IDinnerModel {
 		return result;
 	}
 	
+	public void addDish(Dish chosenDish){
+		this.dishes.add(chosenDish);
+		this.setChanged();
+		this.notifyObservers();
+	}
 	
+	public void removeDish(Dish chosenDish){
+		this.dishes.remove(chosenDish);
+		this.setChanged();
+		this.notifyObservers();
+	}
 
 }

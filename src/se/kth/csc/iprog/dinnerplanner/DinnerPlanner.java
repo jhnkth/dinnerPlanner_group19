@@ -25,7 +25,6 @@ public class DinnerPlanner extends JFrame {
 		dinnerPlanner.setSize(500, 500);
 		
 		//Creating the first view
-		StartView startView = new StartView();
 		StarterChosenView starterChosenView = new StarterChosenView(dinnerPlanner.getModel());
 		
 		//Adding the view to the main JFrame

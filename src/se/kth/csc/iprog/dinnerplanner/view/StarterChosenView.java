@@ -7,11 +7,23 @@ import se.kth.csc.iprog.dinnerplanner.model.Dish;
 
 import java.awt.*;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 
-public class StarterChosenView extends JPanel {
+public class StarterChosenView extends JPanel implements Observer {
+	
+	JSpinner spinner;
+	JLabel labelCost;
+	
+	JButton btnRemove;
+	JButton btnAdd;
+	
 	
 	public StarterChosenView(DinnerModel model){	
+		
+		model.addObserver(this);
+		
 		//Left side border
 		JPanel leftBorder = new JPanel();
 		leftBorder.setLayout(new BorderLayout());
@@ -33,11 +45,13 @@ public class StarterChosenView extends JPanel {
 			JPanel dish = new JPanel();
 			ImageIcon icon = new ImageIcon("images/" + d.getImage());
 			JLabel dishName = new JLabel(d.getName(), null, JLabel.CENTER);
-			JLabel dishIcon = new JLabel("", icon, JLabel.CENTER);		
+			JLabel dishIcon = new JLabel("", icon, JLabel.CENTER);
+			btnAdd = new JButton("+");
 			
 			dish.setLayout(new BorderLayout());
 			dish.add(dishIcon, BorderLayout.NORTH);
 			dish.add(dishName, BorderLayout.SOUTH);
+			dish.add(btnAdd, BorderLayout.EAST);
 			DishList.add(dish);
 		}
 		
@@ -72,8 +86,8 @@ public class StarterChosenView extends JPanel {
 		// Right Side Spinner
 		JPanel spinnerContainer = new JPanel();
 		JLabel labelNrOfGuests = new JLabel("number of guests");
-		SpinnerModel spinnerModel = new SpinnerNumberModel(1, 0, 100, 1);
-		JSpinner spinner = new JSpinner(spinnerModel);
+		SpinnerNumberModel spinnerModel = new SpinnerNumberModel(1, 0, 100, 1);
+		spinner = new JSpinner(spinnerModel);
 		
 		spinnerContainer.add(labelNrOfGuests);
 		spinnerContainer.add(spinner);
@@ -83,7 +97,7 @@ public class StarterChosenView extends JPanel {
 		// Right Side Cost
 		JPanel costContainer = new JPanel();
 		JLabel labelCostLabel = new JLabel("Total cost: ");
-		JLabel labelCost = new JLabel(Float.toString(model.getTotalMenuPrice()));
+		labelCost = new JLabel(Float.toString(model.getTotalMenuPrice()));
 		
 		costContainer.add(labelCostLabel);
 		costContainer.add(labelCost);
@@ -104,31 +118,9 @@ public class StarterChosenView extends JPanel {
 			
 			// Chosen Dish
 			JPanel chosenDishContainer = new JPanel();
-			chosenDishContainer.setLayout(new BoxLayout(chosenDishContainer, BoxLayout.X_AXIS));
+			SelectedDishesView dishView = new SelectedDishesView(model, d);
 			
-			//	... labels
-			JPanel dishLabelContainer = new JPanel();
-			dishLabelContainer.setLayout(new BoxLayout(dishLabelContainer, BoxLayout.Y_AXIS));
-			JLabel labelTypeOfDish = new JLabel(d.getName());
-			JLabel labelCostOfDish = new JLabel(Double.toString(d.getDishPrice(model.getNumberOfGuests())));
-			dishLabelContainer.add(labelTypeOfDish);
-			dishLabelContainer.add(labelCostOfDish);
-			
-			//	... small image
-			ImageIcon tempIcon = new ImageIcon("images/" + d.getImage());
-			Image tempImage = tempIcon.getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
-			ImageIcon smallIcon = new ImageIcon(tempImage);
-			JLabel smallDishIcon = new JLabel("", smallIcon, JLabel.CENTER);
-			
-			//	... remove button
-			JButton btnRemove = new JButton("X");
-			
-			chosenDishContainer.add(smallDishIcon);
-			chosenDishContainer.add(Box.createHorizontalGlue());
-			chosenDishContainer.add(dishLabelContainer);
-			chosenDishContainer.add(Box.createHorizontalGlue());
-			chosenDishContainer.add(btnRemove);
-			chosenDishesContainer.add(chosenDishContainer);
+			chosenDishesContainer.add(dishView);
 		
 		}
 		
@@ -143,9 +135,13 @@ public class StarterChosenView extends JPanel {
 		this.add(leftTab, BorderLayout.CENTER);		
 		this.add(rightSide, BorderLayout.EAST);
 		
+	}
+	
+	public void update(Observable model, Object o){
+		//model.setNumberOfGuests((Integer)spinner.getValue());
+		
+		labelCost.setText(Float.toString(((DinnerModel)model).getTotalMenuPrice()));
+		//spinner.setValue((Object)(DinnerModel)model).getNumberOfGuests());
 
-		
-		
-		
 	}
 }

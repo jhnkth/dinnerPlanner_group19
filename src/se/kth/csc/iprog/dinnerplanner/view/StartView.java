@@ -1,13 +1,16 @@
 package se.kth.csc.iprog.dinnerplanner.view;
 
 import javax.swing.*;
+
+import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
+
 import java.awt.*;
 import java.util.List;
 
 
 public class StartView extends JPanel {
 	
-	public StartView(){	
+	public StartView(DinnerModel model){	
 		//Left side border
 		JPanel leftBorder = new JPanel();
 		leftBorder.setLayout(new BorderLayout());
@@ -64,8 +67,8 @@ public class StartView extends JPanel {
 		// Right Side Spinner
 		JPanel spinnerContainer = new JPanel();
 		JLabel labelNrOfGuests = new JLabel("number of guests");
-		SpinnerModel model = new SpinnerNumberModel(1, 0, 100, 1);
-		JSpinner spinner = new JSpinner(model);
+		SpinnerModel spinnerModel = new SpinnerNumberModel(1, 0, 100, 1);
+		JSpinner spinner = new JSpinner(spinnerModel);
 		
 		spinnerContainer.add(labelNrOfGuests);
 		spinnerContainer.add(spinner);
