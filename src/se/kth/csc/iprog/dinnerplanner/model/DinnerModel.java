@@ -1,6 +1,7 @@
 package se.kth.csc.iprog.dinnerplanner.model;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.Observable;
 
@@ -9,7 +10,7 @@ public class DinnerModel extends Observable implements IDinnerModel  {
 	
 	Set<Dish> dishes = new HashSet<Dish>();
 	Set<Dish> menu = new HashSet<Dish>();
-	private int numberOfGuests = 5;
+	private int numberOfGuests = 1;
 	
 	//Interface
 	public int getNumberOfGuests() {
@@ -64,7 +65,6 @@ public class DinnerModel extends Observable implements IDinnerModel  {
 		return result;
 	}
 
-
 	
 	/**
 	 * TODO: For Lab2 you need to implement the IDinnerModel interface.
@@ -116,6 +116,31 @@ public class DinnerModel extends Observable implements IDinnerModel  {
 		dish2.addIngredient(dish2ing11);
 		dishes.add(dish2);
 		
+		Dish dish3 = new Dish("Dessert",Dish.DESERT,"meatballs.jpg","Preheat an oven to 400 degrees F (200 degrees C). Place the beef into a mixing bowl, and season with salt, onion, garlic salt, Italian seasoning, oregano, red pepper flakes, hot pepper sauce, and Worcestershire sauce; mix well. Add the milk, Parmesan cheese, and bread crumbs. Mix until evenly blended, then form into 1 1/2-inch meatballs, and place onto a baking sheet. Bake in the preheated oven until no longer pink in the center, 20 to 25 minutes.");
+		Ingredient dish3ing1 = new Ingredient("extra lean ground beef",115,"g",20);
+		Ingredient dish3ing2 = new Ingredient("sea salt",0.7,"g",3);
+		Ingredient dish3ing3 = new Ingredient("small onion, diced",0.25,"",2);
+		Ingredient dish3ing4 = new Ingredient("garlic salt",0.6,"g",3);
+		Ingredient dish3ing5 = new Ingredient("Italian seasoning",0.3,"g",3);
+		Ingredient dish3ing6 = new Ingredient("dried oregano",0.3,"g",3);
+		Ingredient dish3ing7 = new Ingredient("crushed red pepper flakes",0.6,"g",3);
+		Ingredient dish3ing8 = new Ingredient("Worcestershire sauce",16,"ml",7);
+		Ingredient dish3ing9 = new Ingredient("milk",20,"ml",4);
+		Ingredient dish3ing10 = new Ingredient("grated Parmesan cheese",5,"g",8);
+		Ingredient dish3ing11 = new Ingredient("seasoned bread crumbs",115,"g",4);
+		dish3.addIngredient(dish3ing1);
+		dish3.addIngredient(dish3ing2);
+		dish3.addIngredient(dish3ing3);
+		dish3.addIngredient(dish3ing4);
+		dish3.addIngredient(dish3ing5);
+		dish3.addIngredient(dish3ing6);
+		dish3.addIngredient(dish3ing7);
+		dish3.addIngredient(dish3ing8);
+		dish3.addIngredient(dish3ing9);
+		dish3.addIngredient(dish3ing10);
+		dish3.addIngredient(dish3ing11);
+		dishes.add(dish3);
+		
 		// Adding some dishes to the menu
 		menu.add(dish1);
 		menu.add(dish2);
@@ -155,16 +180,16 @@ public class DinnerModel extends Observable implements IDinnerModel  {
 		return result;
 	}
 	
+	// Methods for adding and removing dishes from the menu.
 	public void addDish(Dish chosenDish){
-		this.dishes.add(chosenDish);
+		this.menu.add(chosenDish);
 		this.setChanged();
 		this.notifyObservers();
 	}
 	
 	public void removeDish(Dish chosenDish){
-		this.dishes.remove(chosenDish);
+		this.menu.remove(chosenDish);
 		this.setChanged();
 		this.notifyObservers();
 	}
-
 }

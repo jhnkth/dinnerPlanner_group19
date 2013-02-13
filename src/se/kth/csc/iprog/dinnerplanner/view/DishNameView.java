@@ -8,19 +8,25 @@ import se.kth.csc.iprog.dinnerplanner.model.Ingredient;
 
 import java.awt.*;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 
-public class DishNameView extends JPanel {
+public class DishNameView extends JPanel implements Observer {
+	JLabel labelCostOfDish;
+	Dish d;
 	
-	public DishNameView(DinnerModel model){
+	public DishNameView(DinnerModel model, Dish d){
+		model.addObserver(this);
 		this.setLayout(new BorderLayout());
+		this.d = d;
 		
 		// Header
 		JPanel headerContainer = new JPanel();
 		headerContainer.setLayout(new BorderLayout());
 		
 		// ... img
-		ImageIcon tempIcon = new ImageIcon("images/" + model.getSelectedDish(Dish.STARTER).getImage());
+		ImageIcon tempIcon = new ImageIcon("images/" + d.getImage());
 		Image tempImage = tempIcon.getImage().getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH);
 		ImageIcon smallIcon = new ImageIcon(tempImage);
 		JLabel smallDishIcon = new JLabel("", smallIcon, JLabel.CENTER);
@@ -28,8 +34,8 @@ public class DishNameView extends JPanel {
 		// ... Dish Labels
 		JPanel dishLabelContainer = new JPanel();
 		dishLabelContainer.setLayout(new BoxLayout(dishLabelContainer, BoxLayout.Y_AXIS));
-		JLabel labelTypeOfDish = new JLabel(model.getSelectedDish(Dish.STARTER).getName());
-		JLabel labelCostOfDish = new JLabel("Cost of Dish : " + model.getSelectedDish(Dish.STARTER).getDishPrice(model.getNumberOfGuests()) + "SEK for " + model.getNumberOfGuests() + " guests.");
+		JLabel labelTypeOfDish = new JLabel(d.getName());
+		labelCostOfDish = new JLabel("Cost of Dish : " + d.getDishPrice(model.getNumberOfGuests()) + "SEK for " + model.getNumberOfGuests() + " guests.");
 		labelTypeOfDish.setAlignmentX(CENTER_ALIGNMENT);
 		labelCostOfDish.setAlignmentX(CENTER_ALIGNMENT);
 		dishLabelContainer.add(Box.createVerticalGlue());
@@ -77,6 +83,12 @@ public class DishNameView extends JPanel {
 		// Appending to this
 		this.add(headerContainer, BorderLayout.NORTH);
 		this.add(contentContainer, BorderLayout.CENTER);
+		
+	}
+
+	@Override
+	public void update(Observable model, Object o) {
+		labelCostOfDish.setText(("Cost of Dish : " + d.getDishPrice(((DinnerModel) model).getNumberOfGuests()) + "SEK for " + ((DinnerModel) model).getNumberOfGuests() + " guests."));
 		
 	}
 }
