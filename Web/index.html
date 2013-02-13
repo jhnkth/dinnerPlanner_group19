@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Dinner Planner</title>
+    <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.css">
+    <script src="libs/jquery-1.9.0.js"></script>
+    <script src="libs/bootstrap/js/bootstrap.js"></script>
+	<script src="model/dishModel.js"></script>
+	<script src="model/dinnerModel.js"></script>
+	<script src="generalController.js"></script>
+	<script src="view/exampleView.js"></script>
+	<script src="view/exampleViewController.js"></script>
+	<script src="view/menuView.js"></script>
+	<script src="view/menuViewController.js"></script>
+	<script type="text/javascript">
+		//The global variable so we can accesse it from objects
+		var generalController;
+	
+		$(document).ready(function(e) {
+			var dishModel = new DishModel();
+			var dinnerModel = new DinnerModel(dishModel);
+		
+			generalController = new GeneralController(dishModel,dinnerModel);
+		});
+	</script>
+  </head>
+  <body>
+	<div class="container">
+		<!--<div id="exampleView">
+			<div class="row">
+				Number of guest <span id="numberOfGuests"></span>
+			</div>
+			<div class="row">
+				<button id="plusGuest" class="btn"><i class="icon-plus"></i></button>
+			    <button id="minusGuest" class="btn"><i class="icon-minus"></i></button>
+			</div>
+		</div>-->
+		<div id="menuView">
+			<div class="row">
+				<div class="span8" id="menuViewLeft">
+					<div class="row">
+						<div class="span6">
+							<h2 id="menuViewTitle">Step 3: Dessert</h2>
+							<form class="navbar-search pull-left">
+								<input type="text" class="search-query" placeholder="Search">
+
+							</form>
+						</div>
+						<div class="span2" id="menuViewStepMenu">
+							<br/>
+							<p><a href="#">Step 1: Starter</a></p>
+							<p><a href="#">Step 2: Main</a></p>
+						
+						</div>
+					</div>
+					<div class="row">
+						<div class="span8" id="menuViewDishList">
+							<!--<br/>
+							<div class="row">
+								<div class="span2">
+									<img src="http://placehold.it/350x350"/>
+									<p class="text-center">Caption</p>
+								</div>
+							</div>-->
+						</div>
+					</div>
+				</div>
+				<div class="span4" id="menuViewRight">
+					<br/>
+					<div class="row">
+						<div class="span2">
+							<p>Number of people <span id="numberOfGuests"></span></p>
+						</div>
+						<div class="span2">
+							<button id="plusGuest" class="btn"><i class="icon-plus"></i></button>
+							<button id="minusGuest" class="btn"><i class="icon-minus"></i></button>
+
+						</div>
+					</div>
+					<div class="row">
+						<br/>
+						<div class="span2">
+							<p>Total cost:</p>
+
+						</div>
+						<div class="span2">
+							<p><span id="totalPrice"></span></p>
+
+						</div>
+					</div>
+					<div class="row">
+						<div class="span4">
+							<h2>Dinner Menu</h2>
+
+						</div>
+					</div>
+					<div class="row" id="menuViewStarterDish">
+						<div class="span1">
+							<img src="http://placehold.it/150x150"/>
+
+						</div>
+						<div class="span2">
+							<p>Starter: Dish</p>
+							<p>Cost: $0.0</p>
+
+						</div>
+						<div class="span1">
+							<button class="btn btn-danger"><i class="icon-remove"></i></button>
+
+						</div>
+					</div>
+					<div class="row" id="menuViewMainDish">
+
+					</div>
+					<div class="row" id="menuViewDessertDish">
+
+					</div>
+					<div class="row">
+						<br/>
+						<br/>
+						<div class="span4">
+							<button class="btn">Finish</button>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+  </body>
+</html>
