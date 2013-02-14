@@ -56,16 +56,6 @@ function MenuView(parent,dishModel,dinnerModel,generalController) {
 		menuViewDishList.append(domBr);
 		menuViewDishList.append(domDivR);
 
-		/*for (var key in obj) {
-			domDivSpan = $("<div>");
-			domDivSpan.addClass("span2");
-			domDivSpan.addClass("id" + obj[key]['id']);
-			alert(key);
-			
-		}*/
-
-		//var obj = dishModel.getDishes(generalController.stage);
-		//alert(obj[0]["id"]);
 	}
 
 	/*****************************************  
