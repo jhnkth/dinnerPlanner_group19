@@ -31,6 +31,17 @@ function DishModel() {
 			}
 		}
 	}
+	
+	this.getPrice = function(id) {
+		var dish = this.getDish(id);
+		var price = 0;
+		
+		for (var i in dish.ingredients) {
+			ing = dish.ingredients[i];
+			price = price + ing['price'];
+		}
+		return price;
+	}
 
 
 	// the dishes model it contains an array of all the 

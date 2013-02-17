@@ -3,7 +3,9 @@ function DinnerModel(dishModel) {
  
 	this._menu = [];
 	this._numberOfGuests = 3; //set default number of guests
-	//this._menu['starter'] = 1; //set a starter to the menu, to use for testing
+	this._menu['starter'] = 1; //set a starter to the menu, to use for testing
+	this._menu['main course'] = 100;
+	this._menu['dessert'] = 201;
 
 
 	this.setNumberOfGuests = function(num) {

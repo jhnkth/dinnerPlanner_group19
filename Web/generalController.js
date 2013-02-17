@@ -8,5 +8,12 @@ function GeneralController(dishModel,dinnerModel) {
 	var menuViewController = new MenuViewController(menuView,dishModel,dinnerModel);
 
 	menuView.getDishList($("#menuViewDishList"));
+	
+	var finishView = new FinishView($("#finishView"),dishModel,dinnerModel,this);
+	var finishViewController = new FinishViewController(menuView,dishModel,dinnerModel);
+	
+	var popupView = new PopupView($("#popupView"),dishModel,dinnerModel,this,1);
+	var popupViewController = new PopupViewController(menuView,dishModel,dinnerModel);
+	
 }
 

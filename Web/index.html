@@ -13,6 +13,10 @@
 	<script src="view/exampleViewController.js"></script>
 	<script src="view/menuView.js"></script>
 	<script src="view/menuViewController.js"></script>
+	<script src="view/finishView.js"></script>
+	<script src="view/finishViewController.js"></script>
+	<script src="view/popupView.js"></script>
+	<script src="view/popupViewController.js"></script>
 	<script type="text/javascript">
 		//The global variable so we can accesse it from objects
 		var generalController;
@@ -22,6 +26,9 @@
 			var dinnerModel = new DinnerModel(dishModel);
 		
 			generalController = new GeneralController(dishModel,dinnerModel);
+			
+			
+			
 		});
 	</script>
   </head>
@@ -123,15 +130,15 @@
 			</div>
 		</div>
 		
-		<!-- END MENU VIEW -->
+		<!-- END MENU VIEW 
 		
 		
-		<!-- BEGIN FINISH SCREEN
+		<!-- BEGIN FINISH SCREEN -->
 		<div id="finishView">
 			<div class="row">
 				<span class="span6">
 					<form>
-						<button class="btn" id="finishViewBackButton">Test</button>
+						<button class="btn" id="finishViewBackButton">Back</button>
 					</form>
 					
 					<h2>Dinner Menu Preparation</h2>
@@ -167,9 +174,9 @@
 				</span>
 			</div>
 		</div>
-		END FINISH SCREEN -->
+		<!-- END FINISH SCREEN -->
 		
-		<!-- BEGIN POPUP SCREEN
+		<!-- BEGIN POPUP SCREEN -->
 		<div id="popupView">
 			<div class="row">
 				<div class="span2">
@@ -177,28 +184,27 @@
 				</div>
 				<div class="span4">
 					<h3 id="popupViewDishName">Dish Name</h3>
-					<p id="popupViewDishPrice">Price for X persons</p>
+					<p><span id="popupViewDishPrice"></span> $ for <span id="popupViewNumberOfGuests">12</span> persons</p>
 				</div>			
 				<div class="span2">
-						<a class="btn btn-success" href="#"><i class="icon-ok"></i> Choose dish</a>
+						<a class="btn btn-success" id="popupViewConfirmButton" href="#"><i class="icon-ok"></i> Choose dish</a>
 						<br /> <br />
-						<a class="btn" href="#"><i class="icon-backward"></i> Find another</a>
+						<a class="btn" href="#" id="popupViewBackButton"><i class="icon-backward"></i> Find another</a>
 				</div>
 			</div>
 			<div class="row">
 				<div class="span8">
 					<p align="center">~</p>
 					<ul id="popupViewIngredientsList">
-						<li>Carrot x 5 ($3.00)</li>
-						<li>Chicken x 10 ($30.00)</li>
 					</ul>
+					<h3>Preparation instructions</h3>
 					<p id="popupViewDishDescription">Dish preparation</p>
 				</div>
 			</div>
 			
 			
 		</div>
-		 END POPUP SCREEN -->
+		<!-- END POPUP SCREEN -->
 	</div>
   </body>
 </html>

@@ -14,6 +14,7 @@ function MenuView(parent,dishModel,dinnerModel,generalController) {
 	
 	//	Methods
 	//	----------------------------------------
+
 	//	Creating dish list
 	this.getDishList = function(menuViewDishList) {
 		//	Defining variables
