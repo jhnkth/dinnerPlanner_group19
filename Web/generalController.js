@@ -6,6 +6,8 @@ function GeneralController(dishModel,dinnerModel) {
 	//	The Views
 	var menuView = new MenuView($("#menuView"),dishModel,dinnerModel,this);
 	var menuViewController = new MenuViewController(menuView,dishModel,dinnerModel);
+	
+	
 
 	menuView.getDishList($("#menuViewDishList"));
 	
@@ -15,5 +17,6 @@ function GeneralController(dishModel,dinnerModel) {
 	var popupView = new PopupView($("#popupView"),dishModel,dinnerModel,this,1);
 	var popupViewController = new PopupViewController(menuView,dishModel,dinnerModel);
 	
+	$( "#popupView" ).dialog();
 }
 
