@@ -16,6 +16,6 @@ function GeneralController(dishModel,dinnerModel) {
 	var popupView = new PopupView($("#popupView"),dishModel,dinnerModel,this,1);
 	var popupViewController = new PopupViewController(menuView,dishModel,dinnerModel);
 	
-	$( "#popupView" ).dialog();
+	
 }
 
