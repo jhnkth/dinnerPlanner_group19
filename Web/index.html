@@ -29,7 +29,11 @@
 		
 			generalController = new GeneralController(dishModel,dinnerModel);
 			
-			$( "#popupView" ).dialog();
+			$( "#popupViewContainer" ).dialog({
+				width : 660,
+				maxWidth : 660
+				
+			});
 		});
 	</script>
 	
@@ -157,7 +161,10 @@
 			</div>
 		</div>
 		<!-- END FINISH SCREEN -->
-		
+
+	</div>
+	<!-- Container for popup -->
+	<div class="container" id="popupViewContainer">
 		<!-- BEGIN POPUP SCREEN -->
 		<div id="popupView">
 			<div class="row">
@@ -183,8 +190,6 @@
 					<p id="popupViewDishDescription">Dish preparation</p>
 				</div>
 			</div>
-			
-			
 		</div>
 		<!-- END POPUP SCREEN -->
 	</div>
