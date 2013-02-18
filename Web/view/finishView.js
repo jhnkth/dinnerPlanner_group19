@@ -42,6 +42,8 @@ function FinishView(parent,dishModel,dinnerModel,generalController) {
 					
 		}
 		
+		this.finishViewIngredients.html("<tr><th>Ingredient</th><th>Quantity</th><th>Cost</th></tr>");
+		
 		for (var i in this.ingredients) {
 			ing = this.ingredients[i];
 			this.finishViewIngredients.append("<tr><td>" + ing['name'] + "</td><td>" + Math.round(ing['quantity']*this.numberOfGuests * 10)/10 + " " + ing['unit'] + "</td><td>" + ing['price']*this.numberOfGuests + "$" + "</td></tr>");
