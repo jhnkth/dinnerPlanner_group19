@@ -15,6 +15,11 @@ function MenuViewController(view, dishModel, dinnerModel, generalController) {
 		
 	});
 	
+	this.removeDish = function(id) {
+		dinnerModel.removeDishFromMenu(id);
+		view.update();
+		
+	};
 	this.updateView = function () {
 		view.update();
 		

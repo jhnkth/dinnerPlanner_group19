@@ -169,14 +169,23 @@ function MenuView(parent,dishModel,dinnerModel,generalController) {
 		if (obj.starter) {
 			this.populateDish("starter", obj.starter);
 	
+		} else {
+			$("#menuViewStarterDish").html("");
+			
 		}
 		if (obj.main) {
 			this.populateDish("main course", obj.main);
 
+		} else {
+			$("#menuViewMainDish").html("");
+			
 		}
 		if (obj.dessert) {
 			this.populateDish("dessert", obj.dessert);
 
+		} else {
+			$("#menuViewDessertDish").html("");
+			
 		}	
 	}
 	//	Populate Dish
@@ -228,6 +237,7 @@ function MenuView(parent,dishModel,dinnerModel,generalController) {
 		
 		domBtn = $("<button>");
 		domBtn.addClass("btn btn-danger");
+		domBtn.click(function(){generalController.menuViewController.removeDish(obj["id"])});
 		
 		domIcon = $("<i>");
 		domIcon.addClass("icon-remove");

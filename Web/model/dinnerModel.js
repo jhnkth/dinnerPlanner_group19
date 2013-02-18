@@ -62,6 +62,10 @@ function DinnerModel(dishModel) {
 	//Removes dish from menu
 	this.removeDishFromMenu = function(id) {
 		var type = dishModel.getDish(id).type;
+		if (type == "main dish") {
+			type = "main course";
+			
+		}
 		if(this._menu[type] == id) {
 			delete this._menu[type];
 		}
