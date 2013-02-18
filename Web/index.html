@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Dinner Planner</title>
     <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.css">
-    <script src="libs/jquery-1.9.0.js"></script>
+    <script src="libs/jquery-1.9.1.js"></script>
     <script src="libs/bootstrap/js/bootstrap.js"></script>
 	<script src="model/dishModel.js"></script>
 	<script src="model/dinnerModel.js"></script>
@@ -17,6 +17,7 @@
 	<script src="view/finishViewController.js"></script>
 	<script src="view/popupView.js"></script>
 	<script src="view/popupViewController.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
 	<script type="text/javascript">
 		//The global variable so we can accesse it from objects
 		var generalController;
@@ -26,9 +27,13 @@
 			var dinnerModel = new DinnerModel(dishModel);
 		
 			generalController = new GeneralController(dishModel,dinnerModel);
+			
+			$( "#dialog" ).dialog();
 		});
 	</script>
-  </head>
+	
+	
+	  </head>
   <body>
 	<div class="container">
 		<!--<div id="exampleView">
@@ -40,6 +45,10 @@
 			    <button id="minusGuest" class="btn"><i class="icon-minus"></i></button>
 			</div>
 		</div>-->
+		
+		<div id="dialog" title="Basic dialog">
+  <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+</div>
 		
 		<!-- BEGIN MENU VIEW -->
 		<div id="menuView">
