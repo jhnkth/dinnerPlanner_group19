@@ -8,6 +8,7 @@ function MenuView(parent,dishModel,dinnerModel,generalController) {
 	this.minusButton = $("#minusGuest");
 	this.finishButton = $("#finishBtn");
 	this.menuViewDishList = $("#menuViewDishList");
+	this.searchBar = $("#inputDishSearch");
 
 	//Set the inital values of the components
 	this.numberOfGuests.html(dinnerModel.getNumberOfGuests());
@@ -120,7 +121,10 @@ function MenuView(parent,dishModel,dinnerModel,generalController) {
 			domDivR,
 			domDivSpan,
 			domImg,
-			domP;
+			domP,
+			domSearch,
+			append,
+			txt;
 		
 		//	Fetching object
 		obj = dishModel.getDishes(generalController.stage);
@@ -129,6 +133,7 @@ function MenuView(parent,dishModel,dinnerModel,generalController) {
 		domBr = $("<br/>");
 		domDivR = $("<div>");
 		domDivR.addClass("row");
+		domSearch = $("#inputDishSearch").val();
 
 		jQuery.each(obj, function(i, val) {
 			domDivSpan = $("<div>");
@@ -145,10 +150,26 @@ function MenuView(parent,dishModel,dinnerModel,generalController) {
 			domP.html(obj[i]["name"]);
 
 			//	Appending
-			domDivSpan.append(domImg);
-			domDivSpan.append(domP);
-			domDivR.append(domDivSpan);
-
+			if (domSearch == "") {
+				domDivSpan.append(domImg);
+				domDivSpan.append(domP);
+				domDivR.append(domDivSpan);
+					
+			} else {
+				append = true;
+				txt = obj[i]["name"];
+				for (var i = 0; i < domSearch.length; i += 1) {
+					if (domSearch.charAt(i) != txt.charAt(i)) {
+						append = false;
+						
+					}
+				}
+				if (append) {
+					domDivSpan.append(domImg);
+					domDivSpan.append(domP);
+					domDivR.append(domDivSpan);					
+				}
+			}
 		});
 		menuViewDishList.html("");
 		menuViewDishList.append(domBr);

@@ -15,6 +15,11 @@ function MenuViewController(view, dishModel, dinnerModel, generalController) {
 		
 	});
 	
+	view.searchBar.keypress(function() {
+		view.update();
+		
+	});
+	
 	this.removeDish = function(id) {
 		dinnerModel.removeDishFromMenu(id);
 		view.update();
