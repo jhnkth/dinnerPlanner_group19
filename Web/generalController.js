@@ -7,8 +7,6 @@ function GeneralController(dishModel,dinnerModel) {
 	var menuView = new MenuView($("#menuView"),dishModel,dinnerModel,this);
 	var menuViewController = new MenuViewController(menuView,dishModel,dinnerModel);
 	
-	
-
 	menuView.getDishList($("#menuViewDishList"));
 	menuView.populateMenuList();
 	

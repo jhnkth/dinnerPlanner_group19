@@ -148,22 +148,6 @@ function MenuView(parent,dishModel,dinnerModel,generalController) {
 		domDiv_menu.append(domDiv_info);
 		domDiv_menu.append(domDiv_remove);
 		
-		/*
-		 * 				<div class="span1">
-							<img src="http://placehold.it/150x150"/>
-
-						</div>
-						<div class="span2">
-							<p>Starter: Dish</p>
-							<p>Cost: $0.0</p>
-
-						</div>
-						<div class="span1">
-							<button class="btn btn-danger"><i class="icon-remove"></i></button>
-
-						</div>
-		 */
-		
 	}
 
 	/*****************************************  
