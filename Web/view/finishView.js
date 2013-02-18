@@ -16,11 +16,12 @@ function FinishView(parent,dishModel,dinnerModel,generalController) {
 	this.finishViewDessertName 			= $("#finishViewDessertName");
 	this.finishViewDessertDescription 	= $("#finishViewDessertDescription");
 
-	// -- Dishes and ingredients objects
+	// -- Dishes and ingredients objects, numberOfGuests
 	this.starter = dishModel.getDish(dinnerModel.getSelectedDish('starter'));
 	this.main = dishModel.getDish(dinnerModel.getSelectedDish('main course'));
 	this.dessert = dishModel.getDish(dinnerModel.getSelectedDish('dessert'));
 	this.ingredients = dinnerModel.getAllIngredients();
+	this.numberOfGuests = dinnerModel.getNumberOfGuests();
 	
 	//Set the inital values of the components
 	this.finishViewStarterName.html(this.starter.name);
@@ -32,7 +33,7 @@ function FinishView(parent,dishModel,dinnerModel,generalController) {
 	
 	for (var i in this.ingredients) {
 		ing = this.ingredients[i];
-		this.finishViewIngredients.append("<tr><td>" + ing['name'] + "</td><td>" + ing['quantity'] + " " + ing['unit'] + "</td><td>" + ing['price'] + "$" + "</td></tr>");
+		this.finishViewIngredients.append("<tr><td>" + ing['name'] + "</td><td>" + Math.round(ing['quantity']*this.numberOfGuests * 10)/10 + " " + ing['unit'] + "</td><td>" + ing['price']*this.numberOfGuests + "$" + "</td></tr>");
 	}
 
 	/*****************************************  
@@ -44,7 +45,16 @@ function FinishView(parent,dishModel,dinnerModel,generalController) {
 	
 	//This function gets called when there is a change at the model
 	this.update = function(arg){
-		//Nothing gets updated here...
+		this.finishViewIngredients.html("");
+		
+		this.finishViewIngredients.append("<tr><th>Ingredient</th><th>Quantity</th><th>Cost</th></tr>");
+		
+		
+		this.numberOfGuests = dinnerModel.getNumberOfGuests();
+		for (var i in this.ingredients) {
+			ing = this.ingredients[i];
+			this.finishViewIngredients.append("<tr><td>" + ing['name'] + "</td><td>" + Math.round(ing['quantity']*this.numberOfGuests * 10)/10+ " " + ing['unit'] + "</td><td>" + ing['price']*this.numberOfGuests + "$" + "</td></tr>");
+		}
 
 	}
 }

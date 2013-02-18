@@ -12,6 +12,7 @@ function MenuView(parent,dishModel,dinnerModel,generalController) {
 	this.numberOfGuests.html(dinnerModel.getNumberOfGuests());
 	this.totalPrice.html(dinnerModel.getTotalMenuPrice());
 	
+	
 	//	Methods
 	//	----------------------------------------
 
