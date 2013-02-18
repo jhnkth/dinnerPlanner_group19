@@ -17,12 +17,6 @@ function GeneralController(dishModel,dinnerModel) {
 	var popupView = new PopupView($("#popupView"),dishModel,dinnerModel,this,1);
 	var popupViewController = new PopupViewController(menuView,dishModel,dinnerModel);
 	
-	//	Methods
-	/*this.setStage = function (stage) {
-		this.stage = stage;
-		menuView.update(true);
-		
-	}*/
 };
 GeneralController.prototype.setStage = function (stage) {
 	this.stage = stage;
