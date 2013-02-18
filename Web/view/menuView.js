@@ -15,6 +15,99 @@ function MenuView(parent,dishModel,dinnerModel,generalController) {
 	
 	//	Methods
 	//	----------------------------------------
+	//	Get changed stage
+	this.getChangedStage = function() {
+		//	Defining variables
+		var stage,
+			obj;
+		
+		//	Fetching current stage
+		stage = generalController.stage;
+		
+		//	Fetching right object
+		if (stage == "starter") {
+			obj = {
+				menuViewTitle : "Step 1: Starter",
+				menuViewStepMenu : {
+					1 : {
+						title : "step 2: Main",
+						id : "setStageMain",
+						newStage : "main dish"
+						
+					},
+					2 : {
+						title : "step 3: Dessert",
+						id : "setStageDessert",
+						newStage : "dessert"
+						
+					}
+				} 
+			};
+		} else if (stage == "main dish") {
+			obj = {
+				menuViewTitle : "Step 2: Main Course",
+				menuViewStepMenu : {
+					1 : {
+						title : "step 1: Starter",
+						id : "setStageStarter",
+						newStage : "starter"
+						
+					},
+					2 : {
+						title : "step 3: Dessert",
+						id : "setStageDessert",
+						newStage : "dessert"
+						
+					}
+				} 				
+			};
+		} else {
+			obj = {
+				menuViewTitle : "Step 3: Dessert",
+				menuViewStepMenu : {
+					1 : {
+						title : "step 1: Starter",
+						id : "setStageStarter",
+						newStage : "starter"
+						
+					},
+					2 : {
+						title : "step 2: Main",
+						id : "setStageMain",
+						newStage : "main dish"
+						
+					}
+				} 	
+			};
+		}
+		
+		//	Building DOM
+		domP_first = $("<p>");
+		domA_first = $("<a>");
+		domA_first.attr("href", "#");
+		domA_first.attr("id", obj["menuViewStepMenu"][1]["id"]);
+		domA_first.html(obj["menuViewStepMenu"][1]["title"]);
+		domA_first.click(function () {generalController.setStage(obj["menuViewStepMenu"][1]["newStage"])});
+		
+		domP_second = $("<p>");
+		domA_second = $("<a>");
+		domA_second.attr("href", "#");
+		domA_second.attr("id", obj["menuViewStepMenu"][2]["id"]);
+		domA_second.html(obj["menuViewStepMenu"][2]["title"]);
+		domA_second.click(function () {generalController.setStage(obj["menuViewStepMenu"][2]["newStage"])});
+		
+		//	Populating menu view
+		$("#menuViewTitle").html(obj["menuViewTitle"]);
+		
+		domP_first.append(domA_first);
+		domP_second.append(domA_second);
+		
+		$("#menuViewStepMenu").html("");
+		$("#menuViewStepMenu").append("<br/>");
+		$("#menuViewStepMenu").append(domP_first);
+		$("#menuViewStepMenu").append(domP_second);
+		
+	}
 
 	//	Creating dish list
 	this.getDishList = function(menuViewDishList) {
@@ -55,6 +148,7 @@ function MenuView(parent,dishModel,dinnerModel,generalController) {
 			domDivR.append(domDivSpan);
 
 		});
+		menuViewDishList.html("");
 		menuViewDishList.append(domBr);
 		menuViewDishList.append(domDivR);
 		
@@ -161,6 +255,8 @@ function MenuView(parent,dishModel,dinnerModel,generalController) {
 	this.update = function(arg){
 		this.numberOfGuests.html(dinnerModel.getNumberOfGuests());
 		this.totalPrice.html(dinnerModel.getTotalMenuPrice());
+		this.getChangedStage();
+		this.getDishList($("#menuViewDishList"));
 
 	}
 }

@@ -5,8 +5,9 @@ function GeneralController(dishModel,dinnerModel) {
 	
 	//	The Views
 	var menuView = new MenuView($("#menuView"),dishModel,dinnerModel,this);
-	var menuViewController = new MenuViewController(menuView,dishModel,dinnerModel);
+	this.menuViewController = new MenuViewController(menuView,dishModel,dinnerModel, this);
 	
+	menuView.getChangedStage();
 	menuView.getDishList($("#menuViewDishList"));
 	menuView.populateMenuList();
 	
@@ -16,6 +17,15 @@ function GeneralController(dishModel,dinnerModel) {
 	var popupView = new PopupView($("#popupView"),dishModel,dinnerModel,this,1);
 	var popupViewController = new PopupViewController(menuView,dishModel,dinnerModel);
 	
+	//	Methods
+	/*this.setStage = function (stage) {
+		this.stage = stage;
+		menuView.update(true);
+		
+	}*/
+};
+GeneralController.prototype.setStage = function (stage) {
+	this.stage = stage;
+	this.menuViewController.updateView();
 	
 }
-
