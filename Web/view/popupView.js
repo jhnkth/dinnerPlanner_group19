@@ -29,6 +29,7 @@ function PopupView(parent,dishModel,dinnerModel,generalController) {
 		this.dishDescription.html(this.dish.description);
 		this.dishImage.attr("src","images/" + this.dish.image)
 		
+		this.ingredientsList.html("");
 		for (var i in this.ingredients) {
 			ing = this.ingredients[i];
 			this.ingredientsList.append("<li>" + ing['name'] + " : " + ing['quantity'] + " " + ing['unit'] + "($" + ing['price'] + ")" + "</li>");

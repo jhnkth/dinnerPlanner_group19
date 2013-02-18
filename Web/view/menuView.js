@@ -138,6 +138,7 @@ function MenuView(parent,dishModel,dinnerModel,generalController) {
 			domImg = $("<img>");
 			domImg.addClass("id" + obj[i]['id']);
 			domImg.attr("src", "images/" + obj[i]["image"]);
+			domImg.click(function(){generalController.displayPopupView(true, obj[i]["id"])});
 
 			domP = $("<p>");
 			domP.addClass("id" + obj[i]['id']);
