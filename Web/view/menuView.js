@@ -233,7 +233,7 @@ function MenuView(parent,dishModel,dinnerModel,generalController) {
 		
 		domP_cost = $("<p>");
 		domP_cost.attr("id", domP_costID);
-		domP_cost.html("Cost: " + dishModel.getPrice(obj["id"]));
+		domP_cost.html("Cost: " + (dishModel.getPrice(obj["id"]) * dinnerModel.getNumberOfGuests()));
 		
 		domBtn = $("<button>");
 		domBtn.addClass("btn btn-danger");

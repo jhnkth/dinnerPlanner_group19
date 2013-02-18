@@ -9,6 +9,7 @@ function PopupView(parent,dishModel,dinnerModel,generalController) {
 		// and/or ones that responed to interaction)
 		// -- Buttons :
 		this.confirmButton 	= $("#popupViewConfirmButton");
+		this.confirmButton.click(function(){generalController.popupViewController.addDish(generalController.popupId)});
 		
 		// -- Infos fields :
 		this.dishName 			= $("#popupViewDishName");

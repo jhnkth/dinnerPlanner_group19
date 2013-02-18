@@ -9,4 +9,9 @@ function PopupViewController(view, dishModel, dinnerModel, generalController ) {
 		generalController.displayPopupView(false, null);
 		
 	});
+	
+	this.addDish = function(id) {
+		dinnerModel.addDishToMenu(id, dishModel);
+		
+	};
 }
