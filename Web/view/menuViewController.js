@@ -9,6 +9,12 @@ function MenuViewController(view, dishModel, dinnerModel, generalController) {
 		dinnerModel.setNumberOfGuests(dinnerModel.getNumberOfGuests() - 1);
 	});
 	
+	view.finishButton.click(function() {
+		generalController.displayMenuView(false);
+		generalController.displayFinishView(true);
+		
+	});
+	
 	this.updateView = function () {
 		view.update();
 		

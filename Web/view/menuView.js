@@ -6,6 +6,7 @@ function MenuView(parent,dishModel,dinnerModel,generalController) {
 	this.totalPrice = $("#totalPrice");
 	this.plusButton = $("#plusGuest");
 	this.minusButton = $("#minusGuest");
+	this.finishButton = $("#finishBtn");
 	this.menuViewDishList = $("#menuViewDishList");
 
 	//Set the inital values of the components
@@ -237,6 +238,7 @@ function MenuView(parent,dishModel,dinnerModel,generalController) {
 		domBtn.append(domIcon);
 		domDiv_remove.append(domBtn);
 		
+		domDiv_menu.html("");
 		domDiv_menu.append("<br/>");
 		domDiv_menu.append(domDiv_img);
 		domDiv_menu.append(domDiv_info);
@@ -257,6 +259,7 @@ function MenuView(parent,dishModel,dinnerModel,generalController) {
 		this.totalPrice.html(dinnerModel.getTotalMenuPrice());
 		this.getChangedStage();
 		this.getDishList($("#menuViewDishList"));
+		this.populateMenuList();
 
 	}
 }
